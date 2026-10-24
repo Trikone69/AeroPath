@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8fb">
+  <meta name="description" content="Plan, visualize, and compare autonomous drone routes with AeroPath.">
+  <title>AeroPath — Drone route planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="AeroPath home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 5 27l11-6 11 6L16 4Z"/><path d="m16 4 0 17"/></svg></span><span>AERO<span class="brand-light">PATH</span></span></a>
+    <div class="topbar-meta"><span class="live-dot"></span> PATH PLANNING SYSTEM <span class="meta-divider"></span> GRID <span class="mono">30 × 20</span></div>
+    <a class="github-link" href="https://github.com/Trikone69/AeroPath" target="_blank" rel="noreferrer" aria-label="View project source"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.33-3.8-1.33-.5-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.73-1.54-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.44.11-2.99 0 0 .95-.3 3.08 1.15a10.7 10.7 0 0 1 5.61 0c2.13-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.99.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.27-5.14 5.55.4.35.77 1.03.77 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg><span>Source</span><span class="arrow">↗</span></a>
+  </header>
+
+  <main class="layout">
+    <section class="workspace" aria-label="Flight path simulator">
+      <div class="intro">
+        <div class="eyebrow"><span class="eyebrow-line"></span> AUTONOMOUS NAVIGATION LAB <span class="eyebrow-line"></span></div>
+        <h1>Find the way <span>through.</span></h1>
+        <p class="subtitle">Plot a course. Clear the obstacles. See how an autonomous drone thinks.</p>
+      </div>
+
+      <section class="map-panel" aria-label="Interactive route planning grid">
+        <div class="map-head"><div class="map-title"><span class="pulse"></span><span id="map-state">FLIGHT ZONE <b>READY</b></span></div><div class="map-coords"><span>SECTOR</span> N–04 <span class="coord-divider">/</span> <span>ALT</span> 120 M</div></div>
+        <div class="grid-wrap"><div id="grid" class="grid" role="grid" aria-label="Route grid, 30 columns by 20 rows"></div><div class="grid-corner corner-tl"></div><div class="grid-corner corner-tr"></div><div class="grid-corner corner-bl"></div><div class="grid-corner corner-br"></div></div>
+        <div class="map-foot"><span><i class="tiny-cross">+</i> <span id="coordinate">X 01 <b>/</b> Y 01</span></span><span class="map-hint"><kbd>CLICK</kbd> PLACE <span class="hint-dot">·</span> <kbd>DRAG</kbd> DRAW OBSTACLES</span></div>
+      </section>
+
+      <div class="legend"><span class="legend-item"><i class="legend-swatch start-swatch"></i> TAKEOFF</span><span class="legend-item"><i class="legend-swatch goal-swatch"></i> LANDING</span><span class="legend-item"><i class="legend-swatch obstacle-swatch"></i> NO-FLY ZONE</span><span class="legend-item"><i class="legend-swatch route-swatch"></i> FLIGHT PATH</span><span class="legend-item"><i class="legend-swatch explored-swatch"></i> SCANNED</span></div>
+
+      <section class="results" aria-label="Route performance">
+        <div class="results-heading"><div><span class="section-index">01</span> ROUTE ANALYSIS</div><span id="result-tag" class="result-tag">AWAITING RUN</span></div>
+        <div class="metric-grid">
+          <article class="metric-card"><div class="metric-label">PATH LENGTH <span>↗</span></div><div class="metric-value" id="metric-length">—<small> steps</small></div><div class="metric-note">Shortest collision-free route</div></article>
+          <article class="metric-card"><div class="metric-label">NODES EXPLORED <span>◉</span></div><div class="metric-value" id="metric-explored">—</div><div class="metric-note">Cells evaluated by the algorithm</div></article>
+          <article class="metric-card"><div class="metric-label">FLIGHT DISTANCE <span>⌁</span></div><div class="metric-value" id="metric-distance">—<small> m</small></div><div class="metric-note">At 1.2 m per grid cell</div></article>
+        </div>
+      </section>
+      <footer class="footer"><span>© 2025 AEROPATH <span class="footer-dot">·</span> ROUTE INTELLIGENCE</span><span>BUILT FOR THE <b>OPEN SKY</b> <span class="plane">↗</span></span></footer>
+    </section>
+
+    <aside class="control-panel" aria-label="Mission controls">
+      <div class="panel-head"><div><span class="section-index">MISSION CONTROL</span><h2>Configure flight</h2></div><span class="status-pill"><i></i> SYSTEM ONLINE</span></div>
+
+      <div class="control-section"><div class="control-label"><span><span class="control-number">01</span> ROUTE POINTS</span><button id="reset-points" class="text-button" type="button">RESET</button></div>
+        <div class="point-card"><span class="point-icon takeoff-icon"><svg viewBox="0 0 20 20"><path d="M10 16V4m0 0L5.5 8.5M10 4l4.5 4.5M4 16h12"/></svg></span><div class="point-copy"><span class="point-name">TAKEOFF</span><span class="point-description">Starting position</span></div><span id="start-coord" class="point-coord">01, 10</span><span class="point-dot start-dot"></span></div>
+        <div class="point-card"><span class="point-icon landing-icon"><svg viewBox="0 0 20 20"><path d="M3 11h14M6 8l4 4 4-4M5 15h10"/></svg></span><div class="point-copy"><span class="point-name">LANDING</span><span class="point-description">Destination waypoint</span></div><span id="goal-coord" class="point-coord">30, 10</span><span class="point-dot goal-dot"></span></div>
+        <div class="point-help">Select <b>TAKEOFF</b> or <b>LANDING</b>, then click the grid to reposition.</div>
+      </div>
+
+      <div class="control-section algorithm-section"><div class="control-label"><span><span class="control-number">02</span> ROUTING ALGORITHM</span><span class="info-mark" title="Both algorithms find an optimal route. A* uses a distance estimate to explore fewer cells.">i</span></div>
+        <div class="algorithm-switch" role="group" aria-label="Routing algorithm"><button class="algorithm-option active" type="button" data-algorithm="astar"><span>A*</span><small>HEURISTIC</small></button><button class="algorithm-option" type="button" data-algorithm="dijkstra"><span>Dijkstra</span><small>UNINFORMED</small></button></div>
+        <p class="algorithm-description" id="algorithm-description">A* uses distance to goal to prioritize promising routes.</p>
+      </div>
+
+      <div class="control-section obstacle-section"><div class="control-label"><span><span class="control-number">03</span> OBSTACLES</span><span id="obstacle-count" class="obstacle-count">00 CELLS</span></div><div class="obstacle-tools"><button id="obstacle-tool" type="button" class="tool-button active"><span class="brush-icon">▧</span> Draw obstacles <kbd>B</kbd></button><button id="erase-tool" type="button" class="tool-button"><span class="erase-icon">⌫</span> Erase obstacles <kbd>E</kbd></button></div><div class="obstacle-actions"><button id="clear-obstacles" type="button" class="clear-button">CLEAR ALL</button><button id="randomize" type="button" class="clear-button random-button">＋ RANDOM FIELD</button></div></div>
+
+      <div class="run-area"><button id="run-button" type="button" class="run-button"><span class="run-icon">▶</span><span>Find optimal route</span><span class="run-arrow">↗</span></button><button id="animate-button" type="button" class="animate-button" disabled><span>▷</span> Animate flight</button><p class="keyboard-hint"><kbd>SPACE</kbd> RUN SIMULATION <span>·</span> <kbd>R</kbd> RESET</p></div>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </aside>
+  </main>
+</body>
+</html>
