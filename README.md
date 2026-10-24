@@ -34,4 +34,5 @@ The grid uses four-direction movement. Both search algorithms return an optimal 
 - `server.py` — static-file server and JSON pathfinding API.
 - `index.html` — page structure and simulator controls.
 - `styles.css` — responsive visual design.
-- `app.js` — interactive grid, drawing tools, API integration, metrics, and animation.
+- `app.js` — interactive grid, obstacle tools, browser-based A*/Dijkstra routing, metrics, and animation.
+
