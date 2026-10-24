@@ -2,6 +2,8 @@
 
 A grid-based drone path planning and obstacle avoidance simulator. The browser provides an interactive 30 × 20 flight zone and runs A* or Dijkstra locally, so the site works without a backend and can be hosted on GitHub Pages. The Python server provides a standalone Python implementation of both algorithms and serves the files locally.
 
+Live site: <https://trikone69.github.io/AeroPath/>
+
 ## Run locally
 
 Requires Python 3.9+; the server uses only the Python standard library.
@@ -14,7 +16,7 @@ Open [http://localhost:8000](http://localhost:8000). Keep the terminal running w
 
 ## GitHub Pages deployment
 
-The workflow in `.github/workflows/pages.yml` publishes the static site whenever `main` or `master` receives a push. After pushing this project to GitHub, enable **Settings → Pages → Build and deployment → GitHub Actions** in the repository. GitHub Actions will publish the site and show its URL in the workflow run.
+The workflow in `.github/workflows/pages.yml` publishes the static site whenever `main` or `master` receives a push. This repository is configured to use GitHub Actions as its Pages source. GitHub Actions publishes the site and reports its URL in the workflow run.
 
 ## Use the simulator
 
